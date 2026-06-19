@@ -1,4 +1,4 @@
-module RAM_2Port #(parameter width = 16; DEPTH = 256) //2 bytes * 256 Addressesss
+module RAM_2Port #(parameter width = 16, DEPTH = 256) //2 bytes * 256 Addressess
 (
     //write signals
     input i_Wr_Clk,
@@ -7,13 +7,13 @@ module RAM_2Port #(parameter width = 16; DEPTH = 256) //2 bytes * 256 Addressess
     input [width - 1: 0] i_Wr_Data,
     //read signals
     input i_Rd_Clk,
-    input [$clog(DEPTH) - 1 : 0] i_Rd_Addr,
+    input [$clog2(DEPTH) - 1 : 0] i_Rd_Addr,
     input i_Rd_En,
     output reg o_Rd_DV, 
     output reg [width - 1: 0] o_Rd_Data
 );
 
-  reg [width - 1: 0] r_Mem[DEPTH - 1: 0];
+reg [width - 1: 0] r_Mem[DEPTH - 1: 0];
 
 always @(posedge i_Wr_Clk)
 begin
